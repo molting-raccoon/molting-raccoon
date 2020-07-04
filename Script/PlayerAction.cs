@@ -24,7 +24,7 @@ public class PlayerAction : MonoBehaviour
  
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         h = manager.isAction ? 0 : Input.GetAxisRaw("Horizontal");
         v = manager.isAction ? 0 : Input.GetAxisRaw("Vertical");
@@ -41,22 +41,27 @@ public class PlayerAction : MonoBehaviour
             isHorizonMove = false;
         else if (hUp || vUp)
             isHorizonMove = h != 0;
+
+        if (!hDown && !vDown && !hUp && !vUp)
+            anim.SetBool("isChange", false);
+
+        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)|| Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)){
+            anim.SetBool("isChange", true);
+        }
+            
         
 
         //animation
-        if(anim.GetInteger("hAxisRaw") != h)
+        if (anim.GetInteger("hAxisRaw") != h)
         {
-            anim.SetBool("isChange", true);
+            //anim.SetBool("isChange", true);
             anim.SetInteger("hAxisRaw", (int)h);
         }
         else if(anim.GetInteger("vAxisRaw")!=v)
         {
-            anim.SetBool("isChange", true);
+            //anim.SetBool("isChange", true);
             anim.SetInteger("vAxisRaw", (int)v);
         }
-        else
-            anim.SetBool("isChange", false);
-               
 
         //direction
         if(vDown && v==1)
@@ -73,16 +78,17 @@ public class PlayerAction : MonoBehaviour
         {
             dirVec = Vector3.right;
         }
+        
 
         //Scan Object
-        if(Input.GetButtonDown("Jump") && scanObject != null)
+        if (Input.GetButtonDown("Jump") && scanObject != null)
         {
             manager.Action(scanObject);
         }
 
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         //move
         Vector2 moveVec = isHorizonMove ? new Vector2(h, 0) : new Vector2(0, v);
