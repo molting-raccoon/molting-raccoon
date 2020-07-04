@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardDeck : MonoBehaviour
+public class Card : MonoBehaviour
 {
     private string card_name;
     private int level;
@@ -17,7 +17,7 @@ public class CardDeck : MonoBehaviour
     {
         return this.level;
     }
-    
+
     public int get_demage()
     {
         return this.demage;
