@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -19,12 +20,14 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         switch (currentType)
         {
             case BTNType.New:
+                SceneManager.LoadScene("SampleScene");
                 Debug.Log("새게임");
                 break;
             case BTNType.Continue:
                 Debug.Log("이어 하기");
                 break;
             case BTNType.Quit:
+                Application.Quit();
                 Debug.Log("종료 하기");
                 break;
         }
