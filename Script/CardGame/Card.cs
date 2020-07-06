@@ -2,24 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+[System.Serializable]
+public class Card
 {
-    private string card_name;
-    private int level;
-    private int demage;
-
-    public string get_name()
+    public Card ()
     {
-        return this.card_name;
-    }
+        this.card_name = card_name;
+        this.level = level;
+        this.demage = demage;
+        this.weight = weight;
 
-    public int get_level()
-    {
-        return this.level;
     }
+    public string card_name;
+    public int level;
+    public int demage;
+    public int weight;
 
-    public int get_demage()
-    {
-        return this.demage;
-    }
+    
+
 }
